@@ -2,9 +2,7 @@ import axios from 'axios';
 import { QueueResponse, PayloadResponse } from './types';
 
 // Create a proxy URL based on the environment
-const BASE_URL = import.meta.env.PROD 
-  ? 'https://unidas.my.salesforce.com'
-  : '/api';
+const BASE_URL = 'https://unidas.my.salesforce.com';
 
 export async function fetchQueueData(quoteId: string, token: string) {
   const response = await axios.get<QueueResponse>(
@@ -12,6 +10,7 @@ export async function fetchQueueData(quoteId: string, token: string) {
     {
       headers: {
         Authorization: `Bearer ${token}`,
+        'Access-Control-Allow-Origin': '*',
       },
     }
   );
@@ -25,6 +24,7 @@ export async function fetchPayloadData(queueId: string, token: string) {
     {
       headers: {
         Authorization: `Bearer ${token}`,
+        'Access-Control-Allow-Origin': '*',
       },
     }
   );
